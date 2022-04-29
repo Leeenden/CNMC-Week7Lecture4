@@ -15,16 +15,10 @@ const app = async (yargsObj) => {
             await listOneMovie({title: yargsObj.title});
             console.log("List function completed.");
         } else if (yargsObj.update) {
-            // update movies function: takes --update terminal input
-            // --------------- linden's code ---------------------------------
-
-            // await updateMovie(yargsObj.currentValue, yargsObj.newValue));
-            // console.log("Update function completed.");
-
-            // ==============================================================
-            console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry)); // ---- robins code block------
-
-        } else if (yargsObj.delete){
+            // update movies function: takes --update, --newTitle="", --newActor="" = terminal inputs
+            await updateMovie(yargsObj)
+            console.log(`Success! You have changed ${yargsObj.title} to ${yargsObj.newTitle}`)
+        } else if (yargsObj.delete) {
             // delete movie function: takes --delete terminal input
             await deleteMovie({title: yargsObj.title});
             // confirm succesful deletion

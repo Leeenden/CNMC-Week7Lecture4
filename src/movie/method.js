@@ -36,42 +36,38 @@ exports.listOneMovie = async (movieObj) => {
 
 // ---------------------------- Linden's attempt at update ----------------------
 // update movie function
-// exports.updateMovie = async (currentValue, newValue, updateWhich) => {
-//     try {
-//         if (updateWhich == "title"){
-//             await Movie.updateOne(
-//                 { title: currentValue },
-//                 { title: newValue }
-//             );
-//             console.log("trying to update...");
-//             return `The ${updateWhich} of ${currentValue} updated to ${newValue}`;
-//         };
-//     } catch (error) {
-//         console.log(error)
-//     }
-// };
+exports.updateMovie = async (movieObj) => {
+    try {
+        await Movie.updateOne(
+            { title: movieObj.title },
+            { title: movieObj.newTitle, actor: movieObj.newActor }
+        ) 
+    } catch (error) {
+        console.log(error)
+    }
+};
 //=============================================================================
 
 // --------------------------- Robins code block -----------------------------
-exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
-    try {
-        if (entryType == "title") {
-            await Movie.updateOne(
-                { title: oldEntry },
-                { title: newEntry }
-            );
-            return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
-        } else if (entryType == "actor") {
-            await Movie.updateOne(
-                { actor: oldEntry },
-                { actor: newEntry }
-            );
-            return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
-        }
-    } catch (error) {
-        console.log(error);
-    }
-};
+// exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
+//     try {
+//         if (entryType == "title") {
+//             await Movie.updateOne(
+//                 { title: oldEntry },
+//                 { title: newEntry }
+//             );
+//             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
+//         } else if (entryType == "actor") {
+//             await Movie.updateOne(
+//                 { actor: oldEntry },
+//                 { actor: newEntry }
+//             );
+//             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 //=============================================================================
 
 //delete movie function
