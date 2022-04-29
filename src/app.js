@@ -1,7 +1,7 @@
 require("./db/connection");
 const { default: mongoose } = require("mongoose");
 const yargs = require("yargs");
-const { addMovie, listOneMovie, deleteMovie } = require("./movie/method");
+const { addMovie, listOneMovie, updateMovie, deleteMovie } = require("./movie/method");
 const Movie = require("./movie/model");
 
 const app = async (yargsObj) => {
@@ -11,11 +11,19 @@ const app = async (yargsObj) => {
             await addMovie({title: yargsObj.title, actor: yargsObj.actor});
             console.log(`Success, added ${yargsObj.title} to the db. `);
         } else if (yargsObj.list) {
-            // list one movie funciton: takes --list terminal input
+            // list one movie function: takes --list terminal input
             await listOneMovie({title: yargsObj.title});
             console.log("List function completed.");
         } else if (yargsObj.update) {
-            // update movies function: takes --update terminal input 
+            // update movies function: takes --update terminal input
+            // --------------- linden's code ---------------------------------
+
+            // await updateMovie(yargsObj.currentValue, yargsObj.newValue));
+            // console.log("Update function completed.");
+
+            // ==============================================================
+            console.log(await updateMovie(yargsObj.oldEntry, yargsObj.newEntry)); // ---- robins code block------
+
         } else if (yargsObj.delete){
             // delete movie function: takes --delete terminal input
             await deleteMovie({title: yargsObj.title});

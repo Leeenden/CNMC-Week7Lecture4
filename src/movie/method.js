@@ -1,6 +1,6 @@
 const Movie = require("./model");
 
-
+// add movie function
 exports.addMovie = async (movieObj) => {
     //create one entry in the db
     try {
@@ -12,7 +12,7 @@ exports.addMovie = async (movieObj) => {
         console.log(error)
     }
 };
-
+// list one movie function
 exports.listOneMovie = async (movieObj) => {
     // find One movie object from db 
     try {
@@ -27,13 +27,54 @@ exports.listOneMovie = async (movieObj) => {
         console.log(listMovie);
         } else {
             console.log("No movies found with the title input. Try again?");
-        }
-        
+        };
+
     } catch (error) {
         console.log(error);
     }
 };
 
+// ---------------------------- Linden's attempt at update ----------------------
+// update movie function
+// exports.updateMovie = async (currentValue, newValue, updateWhich) => {
+//     try {
+//         if (updateWhich == "title"){
+//             await Movie.updateOne(
+//                 { title: currentValue },
+//                 { title: newValue }
+//             );
+//             console.log("trying to update...");
+//             return `The ${updateWhich} of ${currentValue} updated to ${newValue}`;
+//         };
+//     } catch (error) {
+//         console.log(error)
+//     }
+// };
+//=============================================================================
+
+// --------------------------- Robins code block -----------------------------
+exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
+    try {
+        if (entryType == "title") {
+            await Movie.updateOne(
+                { title: oldEntry },
+                { title: newEntry }
+            );
+            return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
+        } else if (entryType == "actor") {
+            await Movie.updateOne(
+                { actor: oldEntry },
+                { actor: newEntry }
+            );
+            return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+//=============================================================================
+
+//delete movie function
 exports.deleteMovie = async (movieObj) => {
     //delete One movie from the db
     try {
