@@ -17,7 +17,7 @@ const app = async (yargsObj) => {
         } else if (yargsObj.update) {
             // update movies function: takes --update, --newTitle="", --newActor="" = terminal inputs
             await updateMovie(yargsObj)
-            console.log(`Success! You have changed ${yargsObj.title} to ${yargsObj.newTitle}`)
+            console.log(`Success! You have changed ${yargsObj.title} to ${yargsObj.newTitle}`);
         } else if (yargsObj.delete) {
             // delete movie function: takes --delete terminal input
             await deleteMovie({title: yargsObj.title});

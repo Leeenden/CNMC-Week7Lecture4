@@ -34,10 +34,10 @@ exports.listOneMovie = async (movieObj) => {
     }
 };
 
-// ---------------------------- Linden's attempt at update ----------------------
 // update movie function
 exports.updateMovie = async (movieObj) => {
     try {
+        //await model update one method
         await Movie.updateOne(
             { title: movieObj.title },
             { title: movieObj.newTitle, actor: movieObj.newActor }
@@ -46,29 +46,6 @@ exports.updateMovie = async (movieObj) => {
         console.log(error)
     }
 };
-//=============================================================================
-
-// --------------------------- Robins code block -----------------------------
-// exports.updateMovie = async ( oldEntry, newEntry, entryType ) => {
-//     try {
-//         if (entryType == "title") {
-//             await Movie.updateOne(
-//                 { title: oldEntry },
-//                 { title: newEntry }
-//             );
-//             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
-//         } else if (entryType == "actor") {
-//             await Movie.updateOne(
-//                 { actor: oldEntry },
-//                 { actor: newEntry }
-//             );
-//             return `The ${entryType} of ${oldEntry} updated to ${newEntry}`;
-//         }
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-//=============================================================================
 
 //delete movie function
 exports.deleteMovie = async (movieObj) => {
